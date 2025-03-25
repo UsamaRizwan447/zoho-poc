@@ -54,7 +54,7 @@ def callback():
     if "access_token" in token_data:
         ACCESS_TOKEN = token_data["access_token"]
         REFRESH_TOKEN = token_data.get("refresh_token")  # Save for future token refresh
-        return jsonify({"message": "Authorization successful!", "access_token": ACCESS_TOKEN})
+        return jsonify({"message": "Authorization successful!", "access_token": ACCESS_TOKEN, "refresh_token": REFRESH_TOKEN})
     
     return jsonify({"error": "Failed to get access token", "response": token_data})
 
