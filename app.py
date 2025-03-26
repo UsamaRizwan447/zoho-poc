@@ -26,7 +26,8 @@ def authorize():
     auth_url = (
         f"{AUTH_URL}?client_id={CLIENT_ID}"
         f"&response_type=code&redirect_uri={REDIRECT_URI}"
-        f"&scope=Desk.tickets.ALL&access_type=offline&prompt=consent"
+        f"&scope=Desk.tickets.ALL,ZohoDesk.contacts.ALL"
+        f"&access_type=offline&prompt=consent"
     )
     return redirect(auth_url)
 
