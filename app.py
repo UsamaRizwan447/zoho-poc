@@ -1,8 +1,10 @@
 import os
 import requests
 from flask import Flask, redirect, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Load environment variables
 CLIENT_ID = os.getenv("ZOHO_CLIENT_ID")
@@ -83,7 +85,7 @@ def refresh_token():
     
     return jsonify({"error": "Failed to refresh token", "response": token_data})
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def zoho_webhook():
     data = request.json  # Get JSON payload from Zoho Desk
     print("Received Webhook:", data)  # Debugging
