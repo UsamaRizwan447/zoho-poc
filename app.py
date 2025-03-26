@@ -83,5 +83,18 @@ def refresh_token():
     
     return jsonify({"error": "Failed to refresh token", "response": token_data})
 
+@app.route('/webhook', methods=['POST'])
+def zoho_webhook():
+    data = request.json  # Get JSON payload from Zoho Desk
+    print("Received Webhook:", data)  # Debugging
+
+    # Example processing
+    if data.get("status") == "Resolved":
+        ticket_id = data.get("ticketId")
+        subject = data.get("subject")
+        print(f"Ticket {ticket_id} resolved: {subject}")
+
+    return jsonify({"message": "Webhook received successfully"}), 200
+
 if __name__ == "__main__":
     app.run(debug=True)
