@@ -87,6 +87,10 @@ def refresh_token():
 
 @app.route('/webhook', methods=['GET', 'POST'])
 def zoho_webhook():
+
+    if request.method == 'GET':
+        return "Zoho Webhook Verification", 200  # Just return a 200 response
+    
     data = request.json  # Get JSON payload from Zoho Desk
     print("Received Webhook:", data)  # Debugging
 
